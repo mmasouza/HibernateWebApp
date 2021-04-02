@@ -1,5 +1,7 @@
 package com.jwt.hibernate.dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,8 +12,41 @@ import com.jwt.hibernate.bean.Pessoa;
 
 public class UserDAO {
 
-	public void addUserDetails(String userName, String password, String email,
-			String phone, String city) {
+	public List<Pessoa> buscarTodasPessoas() {
+
+		Configuration configuration = new Configuration().configure();
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		List<Pessoa> listaPessoas = session.createQuery("FROM Pessoa").list();
+
+		for (Pessoa pessoa : listaPessoas) {
+			System.err.println(pessoa);
+		}
+
+		session.close();
+
+		return listaPessoas;
+	}
+
+	public static List<Pessoa> buscarTodasPessoas(String nome, Integer idade) {
+
+		Configuration configuration = new Configuration().configure();
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		List<Pessoa> listaPessoas = session.createQuery("FROM Pessoa").list();
+
+		for (Pessoa pessoa : listaPessoas) {
+			System.err.println(pessoa);
+		}
+
+		session.close();
+
+		return listaPessoas;
+	}
+
+	public void addUserDetails(String userName, String password, String email, String phone, String city) {
 		try {
 			// 1. configuring hibernate
 			Configuration configuration = new Configuration().configure();
@@ -34,13 +69,11 @@ public class UserDAO {
 			transaction.commit();
 			System.out.println("\n\n Registro Adicionado. \n");
 			session.close();
-			
 
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 			System.out.println("error");
 		}
-		
 
 	}
 

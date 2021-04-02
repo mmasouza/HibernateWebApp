@@ -1,6 +1,11 @@
 package com.jwt.hibernate.bean;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	private String userName;
 	private String password;
@@ -55,5 +60,13 @@ public class Pessoa {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email
+				+ ", phone=" + phone + ", city=" + city + "]";
+	}
+	
+	
 
 }
