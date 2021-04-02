@@ -3,7 +3,11 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.jwt.hibernate.bean.Pessoa" table="Pessoa">
-		<id column="ID" name="id" type="java.lang.Integer" />
+		<id column="ID" name="id" type="java.lang.Integer">
+			<generator class="sequence">
+				<param name="sequence">person_id_sequence</param>
+			</generator>
+		</id>
 		<property column="USER_NAME" name="userName" type="java.lang.String" />
 		<property column="PASSWORD" name="password" type="string" />
 		<property column="EMAIL" name="email" type="java.lang.String" />

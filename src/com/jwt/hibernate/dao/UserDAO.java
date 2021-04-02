@@ -32,7 +32,7 @@ public class UserDAO {
 			usu.setPhone(phone);
 			session.save(usu);
 			transaction.commit();
-			System.out.println("\n\n Details Added \n");
+			System.out.println("\n\n Registro Adicionado. \n");
 			session.close();
 			
 
