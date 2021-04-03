@@ -18,7 +18,7 @@ public class UserDAO {
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		List<Pessoa> listaPessoas = session.createQuery("FROM Pessoa").list();
+		List<Pessoa> listaPessoas = session.createQuery("FROM Pessoa p ORDER BY p.id ASC").list();
 
 		for (Pessoa pessoa : listaPessoas) {
 			System.err.println(pessoa);

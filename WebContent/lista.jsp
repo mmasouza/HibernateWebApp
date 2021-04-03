@@ -25,15 +25,16 @@
 
 			<c:forEach var="pessoa" items="${listaPessoa}">
 				<tr>
-					<%-- <td><c:out value="${pessoa.id}" /></td> --%>
+					<td><c:out value="${pessoa.id}" /></td>
 					<td><c:out value="${pessoa.userName}" /></td>
 					<td><c:out value="${pessoa.password}" /></td>
 					<td><c:out value="${pessoa.email}" /></td>
 					<td><c:out value="${pessoa.phone}" /></td>
 					<td><c:out value="${pessoa.city}" /></td>
 					<td>
-						<a href="edit?id=<c:out value='${book.id}' />">Editar</a> 	&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a href="delete?id=<c:out value='${book.id}' />">Apagar</a></td>
+						<a href="editar?id=<c:out value='${pessoa.id}' />">Editar</a> 	
+																							&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a href="apagar?id=<c:out value='${pessoa.id}' />">Apagar</a></td>
 				</tr>
 			</c:forEach>
 		</table>
