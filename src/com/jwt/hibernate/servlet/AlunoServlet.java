@@ -13,38 +13,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.jwt.hibernate.bean.Aluno;
 import com.jwt.hibernate.dao.AlunoDAO;
 
 @WebServlet("/AlunoServlet")
 public class AlunoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
- 
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		String destino = "sucesso.jsp";
 		String mensagem = "";
-		List<Aluno> lista = new ArrayList<Aluno>();
- 
- 
+		List<Aluno> lista = new ArrayList<>();
+
+		
 		Aluno aluno = new Aluno();
 		AlunoDAO dao = new AlunoDAO();
- 
+		
 		try {
- 
+
 			//Se a ação for DIFERENTE de Listar são lidos os dados da tela
 			if (!acao.equalsIgnoreCase("Listar")) {
 				aluno.setMatricula(Long.parseLong(request.getParameter("matricula")));
 				aluno.setNome(request.getParameter("nome"));
 				aluno.setTelefone(request.getParameter("telefone"));
 				aluno.setEmail(request.getParameter("email"));
- 
+				
 				//Faz a leitura da data de cadastro. Caso ocorra um erro de formatação
 				// o sistema utilizará a data atual
 				try {
@@ -53,9 +54,9 @@ public class AlunoServlet extends HttpServlet {
 				} catch (Exception e) {
 					aluno.setDataCadastro(new Date());	
 				}
- 
+				
 			}
- 
+
 			if (acao.equalsIgnoreCase("Incluir")) {
 				// Verifica se a matrícula informada já existe no Banco de Dados
 				// Se existir enviar uma mensagem senão faz a inclusão
@@ -78,7 +79,7 @@ public class AlunoServlet extends HttpServlet {
 			destino = "erro.jsp";
 			e.printStackTrace();
 		}
- 
+		
 		// Se a mensagem estiver vazia significa que houve sucesso!
 		// Senão será exibida a tela de erro do sistema.
 		if (mensagem.length() == 0) {
@@ -86,13 +87,13 @@ public class AlunoServlet extends HttpServlet {
 		} else {
 			destino = "erro.jsp";
 		}
- 
+
 		// Lista todos os registros existente no Banco de Dados
 		lista = dao.listar();
 		request.setAttribute("listaAluno", lista);
 		request.setAttribute("mensagem", mensagem);
- 
- 
+		
+
 		//O sistema é direcionado para a página 
 		//sucesso.jsp Se tudo ocorreu bem
 		//erro.jsp se houver algum problema.

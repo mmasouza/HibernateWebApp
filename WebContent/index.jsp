@@ -9,9 +9,9 @@
 	<H2>
 	  Nesta versão utilizaremos as tecnologias: JSP + JSTL + Servlet + JDBC + PostGreSQL.
 	</H2>
-	   <a href="menu.jsp">
-	    <img src="imagem/avancar.jgp">
-	    </a>		  
+	   <a href="menu.jsp">Avançar</a><br>
+	    
+	    		  
 	</div>	
  <a href="https://github.com/mmasouza/HibernateWebApp" target="_blank"> gitHub</a>			
 </body>
