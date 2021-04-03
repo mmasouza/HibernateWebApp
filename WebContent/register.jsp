@@ -11,6 +11,7 @@
 <body>
 
 	<a href="listar">Listar pessoas</a>
+	<input href='listar' type="button" name="listarPessoas" value="Listar pessoas" target="_blank" >
 
 	<h1>Formulario de cadastro</h1>
 
