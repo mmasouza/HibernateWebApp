@@ -1,34 +1,38 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="pt">
 <head>
-<title>Cadastro de Aluno</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Lista de Alunos</title>
 </head>
 <body>
 	<div align="center">
-		<form method="post" action="AlunoServlet">
-			<fieldset>
-				<legend>Cadastro de Alunos</legend>
-				<label>Matrícula: </label><input name="matricula" required
-				    value="${aluno.matricula}"
-					placeholder="2236541" /><br /> 
-				<label>Name:</label><input
-					name="nome" autofocus="autofocus" placeholder="Nome"  value="${aluno.nome}"/><br />
- 
-				 <label>Telefone:</label><input
-					type="tel" name="telefone" placeholder="9999-9999" value="${aluno.telefone}" /><br />
-				 <label>Email:</label><input
-					type="email" name="email" placeholder="andre@feltex.com.br"  value="${aluno.email}"/><br />	
-				<label>Data Cadastro:</label><input type="date" name="dataCadastro" value="${aluno.dataCadastro}"
-					placeholder="10/10/2014" /><br /> <label>Ação</label> <select
-					name="acao" required>
-					<option selected value="Incluir">Incluir</option>
-					<option value="Alterar">Alterar</option>
-					<option value="Excluir">Excluir</option>
-					<option value="Consultar">Consultar</option>
-				</select><br /> <input type="submit" value="Enviar"> <input
-					type="reset" value="Limpar"> <br />
-			</fieldset>
-		</form>
+		<P>Lista de Alunos</P>
+		<table border="1">
+			<tr>
+				<td>Matricula</td>
+				<td>Nome</td>
+				<td>Telefone</td>
+				<td>Data Cadastro</td>
+				<td>Comandos</td>
+			</tr>
+			<c:forEach var="aluno" items="${listaAluno}">
+				<tr>
+					<td>${aluno.matricula}</td>
+					<td>${aluno.nome}</td>
+					<td>${aluno.telefone}</td>
+					<td><fmt:formatDate value="${aluno.dataCadastro}" type="both" pattern="dd/MM/yyyy"/>  
+					<td><a href="AlunoServlet?acao=Excluir&matricula=${aluno.matricula}">Excluir</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<c:if test="${fn:length(listaAluno) > 0}">
+   		Existem ${fn:length(listaAluno)} alunos!
+ 		</c:if><br> 		
 	</div>
+	<a href="menu.jsp">Voltar</a>
+ 
 </body>
 </html>

@@ -9,15 +9,15 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.jwt.hibernate.bean.Aluno;
 import com.jwt.hibernate.dao.AlunoDAO;
 
-@WebServlet("/AlunoServlet")
+@WebServlet("/aluno")
 public class AlunoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,12 +26,14 @@ public class AlunoServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		String destino = "sucesso.jsp";
 		String mensagem = "";
-		List<Aluno> lista = new ArrayList<>();
+		@SuppressWarnings("unchecked")
+		List<Aluno> lista = new ArrayList();
 
 		
 		Aluno aluno = new Aluno();
@@ -39,15 +41,15 @@ public class AlunoServlet extends HttpServlet {
 		
 		try {
 
-			//Se a ação for DIFERENTE de Listar são lidos os dados da tela
+			//Se a aï¿½ï¿½o for DIFERENTE de Listar sï¿½o lidos os dados da tela
 			if (!acao.equalsIgnoreCase("Listar")) {
 				aluno.setMatricula(Long.parseLong(request.getParameter("matricula")));
 				aluno.setNome(request.getParameter("nome"));
 				aluno.setTelefone(request.getParameter("telefone"));
 				aluno.setEmail(request.getParameter("email"));
 				
-				//Faz a leitura da data de cadastro. Caso ocorra um erro de formatação
-				// o sistema utilizará a data atual
+				//Faz a leitura da data de cadastro. Caso ocorra um erro de formataï¿½ï¿½o
+				// o sistema utilizarï¿½ a data atual
 				try {
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");					
 					aluno.setDataCadastro(df.parse(request.getParameter("dataCadastro")));
@@ -58,10 +60,10 @@ public class AlunoServlet extends HttpServlet {
 			}
 
 			if (acao.equalsIgnoreCase("Incluir")) {
-				// Verifica se a matrícula informada já existe no Banco de Dados
-				// Se existir enviar uma mensagem senão faz a inclusão
+				// Verifica se a matrï¿½cula informada jï¿½ existe no Banco de Dados
+				// Se existir enviar uma mensagem senï¿½o faz a inclusï¿½o
 				if (dao.existe(aluno)) {
-					mensagem = "Matrícula informada já existe!";
+					mensagem = "Matrï¿½cula informada jï¿½ existe!";
 				} else {
 					dao.inserir(aluno);
 				}
@@ -81,7 +83,7 @@ public class AlunoServlet extends HttpServlet {
 		}
 		
 		// Se a mensagem estiver vazia significa que houve sucesso!
-		// Senão será exibida a tela de erro do sistema.
+		// Senï¿½o serï¿½ exibida a tela de erro do sistema.
 		if (mensagem.length() == 0) {
 			mensagem = "Aluno Cadastrado com sucesso!";
 		} else {
@@ -94,7 +96,7 @@ public class AlunoServlet extends HttpServlet {
 		request.setAttribute("mensagem", mensagem);
 		
 
-		//O sistema é direcionado para a página 
+		//O sistema ï¿½ direcionado para a pï¿½gina 
 		//sucesso.jsp Se tudo ocorreu bem
 		//erro.jsp se houver algum problema.
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
