@@ -32,8 +32,12 @@ public class AlunoServlet extends HttpServlet {
 		String acao = request.getParameter("acao");
 		String destino = "sucesso.jsp";
 		String mensagem = "";
+<<<<<<< HEAD
 		@SuppressWarnings("unchecked")
 		List<Aluno> lista = new ArrayList();
+=======
+		List<Aluno> lista = new ArrayList<Aluno>();
+>>>>>>> 3a7c91a (Configurar WEB.xml)
 
 		
 		Aluno aluno = new Aluno();
