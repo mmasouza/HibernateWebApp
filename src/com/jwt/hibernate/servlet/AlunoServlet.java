@@ -26,18 +26,13 @@ public class AlunoServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		String destino = "sucesso.jsp";
 		String mensagem = "";
-<<<<<<< HEAD
-		@SuppressWarnings("unchecked")
-		List<Aluno> lista = new ArrayList();
-=======
+
 		List<Aluno> lista = new ArrayList<Aluno>();
->>>>>>> 3a7c91a (Configurar WEB.xml)
 
 		
 		Aluno aluno = new Aluno();

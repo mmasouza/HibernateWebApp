@@ -12,6 +12,7 @@ import com.jwt.hibernate.bean.Pessoa;
 
 public class UserDAO {
 
+	@SuppressWarnings("unchecked")
 	public List<Pessoa> buscarTodasPessoas() {
 
 		Configuration configuration = new Configuration().configure();
@@ -29,6 +30,7 @@ public class UserDAO {
 		return listaPessoas;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Pessoa> buscarTodasPessoas(String nome, Integer idade) {
 
 		Configuration configuration = new Configuration().configure();
