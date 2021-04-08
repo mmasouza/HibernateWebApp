@@ -8,7 +8,7 @@
 	<display-name>HibernateWebApp</display-name>
 
 	<welcome-file-list>
-		<welcome-file>register.jsp</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
